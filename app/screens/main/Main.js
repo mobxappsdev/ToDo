@@ -13,19 +13,37 @@ export default class Main extends React.Component{
   }
 
   addItemsToArray = ()=>{
-    this.state.tasksList.push(this.state.taskName);
-    this.setState({
-      tasksList:this.state.tasksList,
-      taskName:''
-    })
-    console.log(this.state.tasksList);
+    if(this.state.taskName!== ''){
+      this.state.tasksList.push(this.state.taskName)
+      this.setState({
+        tasksList:this.state.tasksList,
+        taskName:''
+      })
+    }else{
+        Alert.alert('Task is a required field.');
+    }
   }
 
   deleteItemsInArray = (array, item)=>{
-    const dataArray = array.filter(e => e!== item)
-    this.setState({
-      tasksList:dataArray
-    })
+    Alert.alert(
+      'Are you sure you want to delete this task?',
+      '',
+      [
+        {
+          text: 'Yes',
+          onPress:()=>{
+            const dataArray = array.filter(e => e!== item)
+            this.setState({
+              tasksList:dataArray
+            })
+          }
+        },
+        {
+          text: 'No'
+        }
+      ],
+      { cancelable: false }
+    )
   }
 
   render(){
@@ -63,7 +81,7 @@ export default class Main extends React.Component{
           </View>
           <View style={{flex:1}}>
             <Button full rounded info onPress={this.addItemsToArray}>
-              <Text>Add</Text>
+              <Text style={{color: 'white'}}>Add</Text>
             </Button>
           </View>
         </Container>

@@ -2,8 +2,11 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import {Container, Header, Content, Body, Title, List, ListItem,
   Button,  Form, Item, Input, Label } from 'native-base'
+import {setTaskList} from '../../redux/actions';
+import {connect} from 'react-redux';
+import { bindActionCreators} from 'redux';
 
-export default class Main extends React.Component{
+class Main extends React.Component{
   constructor(props){
     super(props);
     this.state={
@@ -19,6 +22,8 @@ export default class Main extends React.Component{
         tasksList:this.state.tasksList,
         taskName:''
       })
+      this.props.setTaskList(this.state.tasksList)
+      console.log(this.props.task.tasksList)
     }else{
         Alert.alert('Task is a required field.');
     }
@@ -36,6 +41,8 @@ export default class Main extends React.Component{
             this.setState({
               tasksList:dataArray
             })
+            this.props.setTaskList(this.state.tasksList)
+            console.log(this.props.task.tasksList)
           }
         },
         {
@@ -58,7 +65,7 @@ export default class Main extends React.Component{
         </Header>
 
         <Container  style={{marginTop: 8}}>
-          <List dataArray={this.state.tasksList}
+          <List dataArray={this.props.task.tasksList}
             renderRow={
               (item)=>
               <ListItem button onPress={()=>this.deleteItemsInArray(this.state.tasksList, item)}>
@@ -89,3 +96,17 @@ export default class Main extends React.Component{
     )
   }
 }
+
+function mapStateToProps(state){
+  return{
+    task:state.task
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return{
+    setTaskList: bindActionCreators(setTaskList, dispatch)
+  }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (Main);

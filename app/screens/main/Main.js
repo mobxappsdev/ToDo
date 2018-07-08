@@ -68,14 +68,16 @@ class Main extends React.Component{
           <List dataArray={this.props.task.tasksList}
             renderRow={
               (item)=>
-              <ListItem button onPress={()=>this.deleteItemsInArray(this.state.tasksList, item)}>
+              <ListItem button onPress={()=>this.deleteItemsInArray
+                (this.state.tasksList, item)}>
                 <Text style={{fontSize:18}}>{item}</Text>
               </ListItem>
             }
           />
         </Container>
 
-        <Container style={{flex:0.1, flexDirection: 'row', marginTop: 8, marginBottom: 8, marginLeft:16, marginRight: 16}}>
+        <Container style={{flex:0.1, flexDirection: 'row', marginTop: 8,
+          marginBottom: 8, marginLeft:16, marginRight: 16}}>
           <View style={{flex:4}}>
             <Form>
               <Item >

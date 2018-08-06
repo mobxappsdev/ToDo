@@ -1,7 +1,7 @@
 import {SET_TASK_LIST} from '../../actions/task/types';
 
 const init ={
-  tasksList:[]
+  tasksList:'[]'
 }
 
 export default(state=init, action)=>{
@@ -9,6 +9,6 @@ export default(state=init, action)=>{
     case SET_TASK_LIST:
       return{...state, tasksList:action.tasksList};
     default:
-        return state;
+      return state;
   }
 }

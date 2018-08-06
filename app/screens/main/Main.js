@@ -15,6 +15,12 @@ class Main extends React.Component{
     }
   }
 
+  componentDidMount(){
+    this.setState({
+      tasksList:JSON.parse(this.props.task.tasksList
+    })
+  }
+
   addItemsToArray = ()=>{
     if(this.state.taskName!== ''){
       this.state.tasksList.push(this.state.taskName)
@@ -22,8 +28,7 @@ class Main extends React.Component{
         tasksList:this.state.tasksList,
         taskName:''
       })
-      this.props.setTaskList(this.state.tasksList)
-      console.log(this.props.task.tasksList)
+      this.props.setTaskList(JSON.stringify(this.state.tasksList))
     }else{
         Alert.alert('Task is a required field.');
     }
@@ -41,8 +46,7 @@ class Main extends React.Component{
             this.setState({
               tasksList:dataArray
             })
-            this.props.setTaskList(this.state.tasksList)
-            console.log(this.props.task.tasksList)
+            this.props.setTaskList(JSON.stringify(this.state.tasksList))
           }
         },
         {
@@ -65,7 +69,7 @@ class Main extends React.Component{
         </Header>
 
         <Container  style={{marginTop: 8}}>
-          <List dataArray={this.props.task.tasksList}
+          <List dataArray={this.state.tasksList}
             renderRow={
               (item)=>
               <ListItem button onPress={()=>this.deleteItemsInArray

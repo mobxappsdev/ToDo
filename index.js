@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import {combineReducers, createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import taskReducer from './app/redux/reducers/task/taskReducer';
+import AppReducer from './app/redux/reducers/AppReducer';
 
 const rootReducer = combineReducers({
   task:taskReducer

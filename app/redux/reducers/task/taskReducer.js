@@ -1,7 +1,7 @@
 import {SET_TASK_LIST} from '../../actions/task/types';
 
 const init ={
-  tasksList:''
+  tasksList: ''
 }
 
 export default(state=init, action)=>{

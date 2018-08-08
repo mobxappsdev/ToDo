@@ -16,9 +16,15 @@ class Main extends React.Component{
   }
 
   componentDidMount(){
-    this.setState({
-      tasksList:JSON.parse(this.props.task.tasksList
-    })
+    (this.props.task.tasksList==='')
+    ?
+      this.setState({
+        tasksList:[]
+      })
+    :
+      this.setState({
+        tasksList:JSON.parse(this.props.task.tasksList)
+      })
   }
 
   addItemsToArray = ()=>{
